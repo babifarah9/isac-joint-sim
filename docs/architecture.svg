@@ -1,0 +1,10 @@
+<svg width="1000" height="220" viewBox="0 0 1000 220" xmlns="http://www.w3.org/2000/svg">
+<rect width="1000" height="220" fill="#f3f7fb"/><text x="500" y="36" fill="#153f60" text-anchor="middle" font-family="Arial" font-size="23" font-weight="bold">Joint ISAC Research Model</text>
+<g font-family="Arial" font-size="16" fill="#173f60" text-anchor="middle">
+<rect x="20" y="80" width="188" height="88" rx="12" fill="#dbeaf3" stroke="#20678c" stroke-width="2"/><text x="114" y="112">NR-style RF inputs</text><text x="114" y="139" font-size="12">Frequency / B / SCS / Ptx</text>
+<rect x="275" y="80" width="195" height="88" rx="12" fill="#dbeaf3" stroke="#20678c" stroke-width="2"/><text x="373" y="111">Joint resource</text><text x="373" y="135">allocation</text>
+<rect x="540" y="58" width="198" height="68" rx="12" fill="#dbeaf3" stroke="#20678c" stroke-width="2"/><text x="639" y="87">Sensing</text><text x="639" y="106" font-size="12">Range / Doppler / echo map</text>
+<rect x="540" y="144" width="198" height="66" rx="12" fill="#dbeaf3" stroke="#20678c" stroke-width="2"/><text x="639" y="170">Communications</text><text x="639" y="191" font-size="12">Link budget / SINR / rate</text>
+<rect x="810" y="80" width="170" height="88" rx="12" fill="#dbeaf3" stroke="#20678c" stroke-width="2"/><text x="895" y="112">Dashboard</text><text x="895" y="139" font-size="12">Trade-off exploration</text>
+</g><g fill="none" stroke="#2685ac" stroke-width="3"><path d="M208 124H275"/><path d="M470 124H510V92H540"/><path d="M510 124V177H540"/><path d="M738 92H775V124H810"/><path d="M738 177H775V124"/></g>
+</svg>
