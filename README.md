@@ -1,4 +1,4 @@
-# ISAC Joint Simulator
+# ISAC Joint Simulator v0.2
 
 Interactive **joint sensing and communications** research demonstration for Converture Market Intelligence. Unlike TrustISAC-Sim, this project does **not** include a trust or anti-spoofing decision layer.
 
@@ -80,3 +80,14 @@ bash publish_to_github.sh isac-joint-sim
 ```
 
 The helper creates and pushes a new public repository in your authenticated GitHub account. If `origin` already exists, it pushes the local `main` branch instead. Review the files before publishing publicly.
+
+
+## v0.2 — Actual OFDM echo FFT and recording
+
+Run `streamlit run app_v02.py` for the upgraded dashboard (the original `app.py` remains available for comparison). The CP-OFDM research waveform uses a random QPSK pilot grid with target-delay phase and Doppler phase imposed on the returns, followed by pilot equalization, a delay IFFT and slow-time Doppler FFT. A heuristic peak picker produces range and radial-velocity estimates; multi-object returns are simulated. Unambiguous range, velocity aliasing, and bandwidth truncation are reported.
+
+Changing frequency, bandwidth, subcarrier spacing, power, receiver noise figure, integration, assumed sensing SNR, target range/velocity/RCS, and sensing allocation updates the experiment. Communications metrics remain independently modeled downlink **proxies**, not PHY transport-block or 3GPP conformance calculations. **No RF object type classifier is implemented**; drone/vehicle/pedestrian names are labeled scenario inputs. The sensing-SNR-at-100m control is a hypothetical calibration assumption, not a measured radar SNR. The time sampling uses a synthetic sensing observation cadence, not an exact 3GPP slot/frame schedule.
+
+The v0.2 app exports JSON, an animated GIF, and an MP4 (MP4 requires FFmpeg on the host). Tests: `pytest -q`. Install with `pip install -e '.[dev]'`.
+
+Standards reference: 3GPP TR 38.765 (Release 20) is a *study* on ISAC for NR; this is a reproducible experimental teaching simulator, not a certified implementation. Simulation outcomes are not evidence of field accuracy or commercial sensing economics.
