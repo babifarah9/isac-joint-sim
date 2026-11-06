@@ -1,11 +1,10 @@
-"""Streamlit v0.2: FFT ISAC sensing, simultaneous communication, reproducible export."""
+"""Streamlit v0.2: FFT ISAC sensing, simultaneous communications dashboard."""
 from dataclasses import asdict
 import json
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 from isac_joint_sim.ofdm import WaveformConfig,Target,simulate_ofdm,communications
-from isac_joint_sim.render import export_gif,export_mp4
 
 st.set_page_config(page_title="ISAC Joint Simulator v0.2",page_icon="📡",layout="wide")
 st.title("📡 ISAC Joint Simulator v0.2 — Converture")
@@ -67,15 +66,6 @@ with right:
     if any(abs(t.radial_velocity_mps)>met["max_unambiguous_abs_velocity_mps"] for t in targets):st.error("Doppler aliasing risk: velocity beyond unambiguous limit.")
     if any(t.range_m>met["max_unambiguous_range_m"] for t in targets):st.error("Range ambiguity risk.")
 
-st.subheader("LinkedIn demo export")
-count=st.slider("Number of rendered frames",4,20,8)
-fps=st.select_slider("Export fps",options=[1,2,4,5,10],value=4)
-if st.button("Render GIF + MP4"):
-    with st.spinner("Generating waveform frames"):
-        frames=[simulate_ofdm(cfg,targets,k) for k in range(count)]
-        st.download_button("Download GIF",export_gif(frames,cfg,fps),"Converture_ISAC_v02.gif","image/gif")
-        try: st.download_button("Download MP4",export_mp4(frames,cfg,fps),"Converture_ISAC_v02.mp4","video/mp4")
-        except RuntimeError as e:st.info(f"MP4 unavailable: {e}")
 payload={"config":asdict(cfg),"frame":frame,"peaks":r["detections"],"truth":r["truth"],"metrics":met,"communications":com}
 st.download_button("Download JSON",json.dumps(payload,indent=2),"isac_v02_frame.json","application/json")
 st.caption("Research only. 3GPP TR 38.765 Release 20 is an ISAC study, not proof this model meets NR standards.")
