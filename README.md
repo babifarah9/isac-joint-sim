@@ -88,6 +88,15 @@ Run `streamlit run app_v02.py` for the upgraded dashboard (the original `app.py`
 
 Changing frequency, bandwidth, subcarrier spacing, power, receiver noise figure, integration, assumed sensing SNR, target range/velocity/RCS, and sensing allocation updates the experiment. Communications metrics remain independently modeled downlink **proxies**, not PHY transport-block or 3GPP conformance calculations. **No RF object type classifier is implemented**; drone/vehicle/pedestrian names are labeled scenario inputs. The sensing-SNR-at-100m control is a hypothetical calibration assumption, not a measured radar SNR. The time sampling uses a synthetic sensing observation cadence, not an exact 3GPP slot/frame schedule.
 
-The v0.2 app exports JSON, an animated GIF, and an MP4 (MP4 requires FFmpeg on the host). Tests: `pytest -q`. Install with `pip install -e '.[dev]'`.
+The v0.2 dashboard exports research results as JSON. For promotional demonstrations, record the interactive dashboard directly using macOS screen recording; GIF/MP4 controls are intentionally not displayed in the app. Tests: `pytest -q`. Install with `pip install -e '.[dev]'`.
 
 Standards reference: 3GPP TR 38.765 (Release 20) is a *study* on ISAC for NR; this is a reproducible experimental teaching simulator, not a certified implementation. Simulation outcomes are not evidence of field accuracy or commercial sensing economics.
+
+
+## Recording a dashboard walkthrough on macOS
+
+1. Start `streamlit run app_v02.py`, maximize the browser, and set zoom to 80–90% so the RF controls, range–Doppler map and communications indicators are readable.
+2. Press `Shift-Command-5` and choose **Record Selected Portion** or **Record Entire Screen**. Select the simulator area and click Record.
+3. Begin at 3.5 GHz / 80 MHz / 30 kHz SCS, with two targets. Show the map and communications KPIs; then advance the simulation frame.
+4. Change bandwidth to illustrate resolution, frequency to illustrate wavelength and RF budget, and sensing allocation to illustrate communications resource trade-offs. Allow recomputation after each change.
+5. Stop recording using the menu bar control. Trim the clip in QuickTime Player. Label the demonstration research-only; object categories remain scenario inputs and throughput is an illustrative proxy.
